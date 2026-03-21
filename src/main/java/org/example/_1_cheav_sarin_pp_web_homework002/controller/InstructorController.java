@@ -1,9 +1,12 @@
 package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
 import org.example._1_cheav_sarin_pp_web_homework002.service.InstructorService;
 import org.springframework.http.HttpStatus;
@@ -75,7 +78,41 @@ public class InstructorController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+    @PutMapping("/{instructorId}")
+    public ResponseEntity<ApiResponse<Instructor>> updateInstructor(
+            @PathVariable Integer instructorId,
+            @RequestBody InstructorRequest instructorRequest) {
 
-}
+        Instructor instructor = instructorService.updateInstructor(instructorId, instructorRequest);
+
+        ApiResponse<Instructor> response = ApiResponse.<Instructor>builder()
+                .success(true)
+                .status("200")
+                .message("Instructor updated successfully")
+                .payload(instructor)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @DeleteMapping("/{instructorId}")
+    public ResponseEntity<ApiResponse<String>> deleteInstructor(
+            @PathVariable Integer instructorId) {
+
+        instructorService.deleteInstructorById(instructorId);
+
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .success(true)
+                .status("200")
+                .message("Instructor deleted successfully")
+                .payload("Deleted ID: " + instructorId)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    }
+
+
 
 

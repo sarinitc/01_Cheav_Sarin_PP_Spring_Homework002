@@ -32,4 +32,11 @@ public class StudentServiceImpl implements StudentService {
 
         return studentRepository.saveStudent(studentRequest);
     }
+
+    @Override
+    public Student updateStudent(Integer studentId, StudentRequest studentRequest) {
+        return null;
+    }
+
+
 }

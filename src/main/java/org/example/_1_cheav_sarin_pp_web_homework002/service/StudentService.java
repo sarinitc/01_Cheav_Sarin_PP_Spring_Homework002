@@ -14,4 +14,6 @@ public interface StudentService {
     List<Student> getAllStudents(Integer page, Integer size);
 
     Student createStudent(StudentRequest studentRequest);
+
+    Student updateStudent(Integer studentId, StudentRequest studentRequest);
 }

@@ -41,4 +41,19 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
 
-}
+    @Override
+    public Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest) {
+        instructorRepository.updateInstructor(instructorId, instructorRequest);
+        return instructorRepository.getInstructorById(instructorId);
+    }
+
+    @Override
+    public void deleteInstructorById(Integer instructorId) {
+        instructorRepository.deleteInstructorById(instructorId);
+    }
+
+    }
+
+
+
+

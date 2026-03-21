@@ -30,6 +30,21 @@ public interface InstructorRepository {
         RETURNING *;
         """)
     Instructor saveINstructor(InstructorRequest instructorRequest);
+
+    @Update("""
+        UPDATE instructors
+        SET instructor_name = #{req.instructorName},
+            phone_number = #{req.phoneNumber}
+        WHERE instructor_id = #{id}
+    """)
+    void updateInstructor(@Param("id") Integer instructorId,
+                          @Param("req") InstructorRequest instructorRequest);
+    @Delete("""
+    DELETE FROM instructors
+   WHERE instructor_id = #{instructorId}
+""")
+    void deleteInstructorById(@Param("id") Integer instructorId);
 }
+
 
 

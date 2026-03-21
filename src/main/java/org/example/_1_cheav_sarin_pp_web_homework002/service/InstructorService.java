@@ -17,4 +17,8 @@ public interface InstructorService {
     List<Instructor> getAllStudents(Integer page, Integer size);
 
     Instructor createInstructor(InstructorRequest instructorRequest);
+
+    Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest);
+
+    void deleteInstructorById(Integer instructorId);
 }

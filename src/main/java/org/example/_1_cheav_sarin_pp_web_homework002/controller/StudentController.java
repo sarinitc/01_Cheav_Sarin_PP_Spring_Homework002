@@ -1,7 +1,9 @@
 package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
 import org.example._1_cheav_sarin_pp_web_homework002.service.StudentService;
@@ -72,4 +74,22 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+    @PutMapping("/{studentId}")
+    public ResponseEntity<ApiResponse<Student>> updateStudent(
+            @PathVariable Integer studentId,
+            @RequestBody StudentRequest  studentRequest) {
+
+        Student student = studentService.updateStudent(studentId, studentRequest);
+
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
+                .success(true)
+                .status("200")
+                .message("Student updated successfully")
+                .payload(student)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }
