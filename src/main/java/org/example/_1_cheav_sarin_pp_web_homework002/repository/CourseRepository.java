@@ -30,4 +30,5 @@ public interface CourseRepository {
         """)
     Course getCourseById(Integer CourseId );
 
+    Course createCourse(CourseRequest courseRequest);
 }

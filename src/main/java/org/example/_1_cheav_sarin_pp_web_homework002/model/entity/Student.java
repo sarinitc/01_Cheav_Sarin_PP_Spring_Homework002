@@ -1,9 +1,8 @@
-package org.example._1_cheav_sarin_pp_web_homework002.model;
+package org.example._1_cheav_sarin_pp_web_homework002.model.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 
 import java.util.List;
 
@@ -15,6 +14,8 @@ public class Student {
     private String studentName;
     private String email;
     private String phoneNumber;
-    private List<Course> courses ;
+   //private List<Course> courses ;
+    private Course course;
+
 
 }

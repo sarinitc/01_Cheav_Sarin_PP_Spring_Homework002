@@ -54,12 +54,13 @@ public class CourseController {
         ApiResponse<Course> response = ApiResponse.<Course>builder()
                 .success(false)
                 .status("404")
-                .message("Instructor fetch by ID " + courseId + " not found")
+                .message("Course fetch by ID " + courseId + " not found")
                 .payload(null)
                 .timestamp(LocalDateTime.now())
                 .build();
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+
     }
 

@@ -1,7 +1,7 @@
 package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
 import org.example._1_cheav_sarin_pp_web_homework002.service.StudentService;
@@ -58,10 +58,18 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
-    @PostMapping("/students")
-    public Student createStudent( StudentRequest studentRequest){
+    @PostMapping
+    public ResponseEntity<ApiResponse<Student>> createStudent(@RequestBody StudentRequest studentRequest) {
+        Student student = studentService.createStudent(studentRequest);
 
-         return studentService.createStudent(studentRequest);
+        ApiResponse<Student> response = ApiResponse.<Student>builder()
+                .success(true)
+                .status("201")
+                .message("Student created successfully")
+                .payload(student)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
 }

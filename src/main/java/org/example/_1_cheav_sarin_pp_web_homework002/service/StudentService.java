@@ -1,6 +1,6 @@
 package org.example._1_cheav_sarin_pp_web_homework002.service;
 
-import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 
 import java.util.List;

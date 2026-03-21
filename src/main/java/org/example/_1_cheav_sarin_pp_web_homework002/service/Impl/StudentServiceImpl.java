@@ -1,7 +1,7 @@
 package org.example._1_cheav_sarin_pp_web_homework002.service.Impl;
 
 import lombok.RequiredArgsConstructor;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.repository.StudentRepository;
 import org.example._1_cheav_sarin_pp_web_homework002.service.StudentService;

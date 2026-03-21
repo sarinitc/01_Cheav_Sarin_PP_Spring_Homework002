@@ -1,7 +1,7 @@
 package org.example._1_cheav_sarin_pp_web_homework002.repository;
 
 import org.apache.ibatis.annotations.*;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import java.util.List;
 @Mapper
@@ -10,6 +10,9 @@ public interface StudentRepository {
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "studentName", column = "student_name"),
             @Result(property = "phoneNumber", column = "phone_number"),
+            @Result(property = "course", column = "course_id",
+                    many = @Many(select = "org.example._1_cheav_sarin_pp_web_homework002.repository.CourseRepository.getCourseById"))
+
 
     })
     @Select("SELECT* FROM students LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
