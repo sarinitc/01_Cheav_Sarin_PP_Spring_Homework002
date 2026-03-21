@@ -25,8 +25,6 @@ public interface InstructorRepository {
             WHERE instructor_id = #{instructorId}
             """)
     Instructor getInstructorById(Integer instructorId);
-
-
     @ResultMap("instructorMapper")
     @Select("""
         INSERT INTO instructors (instructor_name, email)

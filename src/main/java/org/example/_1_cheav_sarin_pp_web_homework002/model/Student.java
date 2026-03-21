@@ -3,9 +3,7 @@ package org.example._1_cheav_sarin_pp_web_homework002.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 
 import java.util.List;
 

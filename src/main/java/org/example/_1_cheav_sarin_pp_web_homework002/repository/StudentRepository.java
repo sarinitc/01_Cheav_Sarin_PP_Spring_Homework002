@@ -9,7 +9,8 @@ public interface StudentRepository {
     @Results(id = "studentMapper", value = {
             @Result(property = "studentId", column = "student_id"),
             @Result(property = "studentName", column = "student_name"),
-            @Result(property = "phoneNumber", column = "phone_number")
+            @Result(property = "phoneNumber", column = "phone_number"),
+
     })
     @Select("SELECT* FROM students LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
     List<Student> findAllStudentsWithPagination(Integer page, Integer size);

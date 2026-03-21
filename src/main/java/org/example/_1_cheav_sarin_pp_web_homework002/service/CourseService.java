@@ -1,9 +1,18 @@
 package org.example._1_cheav_sarin_pp_web_homework002.service;
 
-import org.example._1_cheav_sarin_pp_web_homework002.model.Course;
+import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
 
 import java.util.List;
 
 public interface CourseService {
-    List<Course> getAllCourse();
+
+    List<Course> getAllcoures(Integer page, Integer size);
+
+    List<Course> getAllCourses(Integer page, Integer size);
+
+    Course getCourseById(Integer courseId);
+
+    Instructor createCourse(CourseRequest courseRequest);
 }
