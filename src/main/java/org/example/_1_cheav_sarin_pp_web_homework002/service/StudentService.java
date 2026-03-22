@@ -7,18 +7,10 @@ import java.util.List;
 
 public interface StudentService {
 
-
     Student getStudentById(Integer studentId);
-
-
     List<Student> getAllStudents(Integer page, Integer size);
-
     Student createStudent(StudentRequest studentRequest);
-
     boolean deleteStudentById(Integer instructorId);
-
-
     boolean deleteInstructorById(Integer studentId);
-
     Student updateStudent(Integer studentId, StudentRequest studentRequest);
 }

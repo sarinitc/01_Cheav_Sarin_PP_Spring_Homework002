@@ -14,25 +14,20 @@ public interface StudentRepository {
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "course", column = "course_id",
                     one = @One(select = "org.example._1_cheav_sarin_pp_web_homework002.repository.InstructorRepository.getCourseById"))
-
-
     })
     @Select("SELECT* FROM students LIMIT #{size} OFFSET (#{page} -1 )* #{size}")
     List<Student> findAllStudentsWithPagination(Integer page, Integer size);
-
     @ResultMap("studentMapper")
     @Select("""
         SELECT * FROM students
         WHERE student_id = #{studentId}
     """)
     Student getStudentById(@Param("studentId") Integer studentId);
-
     @Select("""
         INSERT INTO students (student_name, email, phone_number)
         VALUES (#{student.studentName}, #{student.email}, #{student.phoneNumber})
         RETURNING *;
     """)
-
     Course createCourse(@Param("course") CourseRequest courseRequest);
     @ResultMap("studentMapper")
     Student saveStudent(@Param("student") StudentRequest studentRequest);
@@ -43,7 +38,6 @@ public interface StudentRepository {
     """)
     void insertStudentCourse(@Param("studentId") Integer studentId,
                              @Param("courseId") Integer courseId);
-
     @Select("""
     UPDATE students
     SET course_name = #{student.studentName},
@@ -56,12 +50,6 @@ public interface StudentRepository {
     @ResultMap("studentMapper")
     Course updateStudent(@Param("id") Integer studentId,
                         @Param("course") StudentRequest studentRequest);
-
-
-
-
-
-
     @Delete("""
         DELETE FROM students
         WHERE student_id = #{studentId}

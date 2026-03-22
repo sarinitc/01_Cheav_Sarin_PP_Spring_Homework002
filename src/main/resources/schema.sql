@@ -49,18 +49,17 @@ INSERT INTO courses (course_name, description, instructor_id) VALUES
 ('Cyber Security', 'Basics of security and protection', 10);
 
 INSERT INTO students (student_name, email, phone_number) VALUES
-                                                             ('Sarin', 'sarin@gmail.com', '012345678'),
-                                                             ('Pojim', 'pojim@gmail.com', '098765432'),
-                                                             ('Dara', 'dara@gmail.com', '011223344'),
-                                                             ('Sokha', 'sokha@gmail.com', '012334455'),
-                                                             ('Vanna', 'vanna@gmail.com', '013445566'),
-                                                             ('Rith', 'rith@gmail.com', '014556677'),
-                                                             ('Chan', 'chan@gmail.com', '015667788'),
-                                                             ('Mony', 'mony@gmail.com', '016778899'),
-                                                             ('Nita', 'nita@gmail.com', '017889900'),
-                                                             ('Kosal', 'kosal@gmail.com', '018990011'),
-                                                             ('Lymeng', 'lymeng@gmail.com', '011223344');
-
+('Sarin', 'sarin@gmail.com', '012345678'),
+('Pojim', 'pojim@gmail.com', '098765432'),
+('Dara', 'dara@gmail.com', '011223344'),
+('Sokha', 'sokha@gmail.com', '012334455'),
+('Vanna', 'vanna@gmail.com', '013445566'),
+('Rith', 'rith@gmail.com', '014556677'),
+('Chan', 'chan@gmail.com', '015667788'),
+('Mony', 'mony@gmail.com', '016778899'),
+('Nita', 'nita@gmail.com', '017889900'),
+('Kosal', 'kosal@gmail.com', '018990011'),
+ ('Lymeng', 'lymeng@gmail.com', '011223344');
 ALTER TABLE courses
 DROP CONSTRAINT IF EXISTS courses_instructor_id_fkey,
 ADD CONSTRAINT fk_courses_instructor
@@ -73,12 +72,12 @@ ALTER TABLE student_course
 DROP CONSTRAINT IF EXISTS student_course_student_id_fkey,
 DROP CONSTRAINT IF EXISTS student_course_course_id_fkey,
 ADD CONSTRAINT fk_student_course_student
-    FOREIGN KEY (student_id)
-    REFERENCES students(student_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-    ADD CONSTRAINT fk_student_course_course
-    FOREIGN KEY (course_id)
-    REFERENCES courses(course_id)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE;
+FOREIGN KEY (student_id)
+REFERENCES students(student_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+ADD CONSTRAINT fk_student_course_course
+FOREIGN KEY (course_id)
+REFERENCES courses(course_id)
+ON DELETE CASCADE
+ON UPDATE CASCADE;

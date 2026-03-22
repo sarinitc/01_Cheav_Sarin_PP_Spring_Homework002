@@ -1,14 +1,8 @@
 package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
-import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
-import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
-import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
-import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
-import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
 import org.example._1_cheav_sarin_pp_web_homework002.service.InstructorService;
 import org.springframework.http.HttpStatus;
@@ -24,7 +18,6 @@ import java.util.List;
 public class InstructorController {
 
     private final InstructorService instructorService;
-
     @GetMapping
     public ResponseEntity<ApiResponse<List<Instructor>>> getAllInstructors(
             @RequestParam Integer page,
@@ -37,14 +30,11 @@ public class InstructorController {
                 .payload(instructorService.getAllInstructor(page, size))
                 .timestamp(LocalDateTime.now())
                 .build();
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-
     @GetMapping("/{instructor-id}")
     public ResponseEntity<ApiResponse<Instructor>> getInstructorById(@PathVariable(name = "instructor-id") Integer instructorId) {
         Instructor instructor = instructorService.getInstructorById(instructorId);
-
         if (instructor != null) {
             ApiResponse<Instructor> response = ApiResponse.<Instructor>builder()
                     .success(true)
@@ -53,7 +43,6 @@ public class InstructorController {
                     .payload(instructor)
                     .timestamp(LocalDateTime.now())
                     .build();
-
             return ResponseEntity.status(HttpStatus.OK).body(response);
         }
         ApiResponse<Instructor> response = ApiResponse.<Instructor>builder()
@@ -63,7 +52,6 @@ public class InstructorController {
                 .payload(null)
                 .timestamp(LocalDateTime.now())
                 .build();
-
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
     @PostMapping
@@ -77,10 +65,8 @@ public class InstructorController {
                 .payload(instructor)
                 .timestamp(LocalDateTime.now())
                 .build();
-
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
-
     @DeleteMapping("/{instructor-id}")
     public ResponseEntity<ApiResponse<String>> deleteInstructor(
             @PathVariable("instructor-id") Integer instructorId) {
@@ -98,9 +84,9 @@ public class InstructorController {
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
-    @PutMapping("/{instructorId}")
+    @PutMapping("/{instructor-id}")
     public ResponseEntity<ApiResponse<Instructor>> updateInstructor(
-            @PathVariable Integer instructorId,
+            @PathVariable("instructor-id") Integer instructorId,
             @RequestBody InstructorRequest instructorRequest) {
 
         Instructor instructor = instructorService.updateInstructor(instructorId, instructorRequest);
@@ -112,7 +98,6 @@ public class InstructorController {
                 .payload(instructor)
                 .timestamp(LocalDateTime.now())
                 .build();
-
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     }

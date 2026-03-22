@@ -1,5 +1,4 @@
 package org.example._1_cheav_sarin_pp_web_homework002.service.Impl;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 import lombok.RequiredArgsConstructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
@@ -23,22 +22,17 @@ public class CourseServiceImpl implements CourseService {
     public Course getCourseById(Integer courseId) {
         return courseRepository.getCourseById(courseId);
     }
-
     @Override
     public Course createCourse(CourseRequest courseRequest) {
         return courseRepository.createCourse(courseRequest);
     }
-
     @Override
     public Course updateCourse(Integer courseId, CourseRequest courseRequest) {
         courseRepository.updateCourse(courseId, courseRequest);
         return courseRepository.getCourseById(courseId);
     }
-
     @Override
     public void deleteCourseById(Integer courseId) {
-
     }
-
 
 }

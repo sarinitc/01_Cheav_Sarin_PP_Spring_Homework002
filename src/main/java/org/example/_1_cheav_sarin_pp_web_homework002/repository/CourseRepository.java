@@ -1,12 +1,8 @@
 package org.example._1_cheav_sarin_pp_web_homework002.repository;
 
 import org.apache.ibatis.annotations.*;
-import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
-import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
-import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
-import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 
 import java.util.List;
 
@@ -38,8 +34,6 @@ public interface CourseRepository {
         RETURNING *;
         """)
     Course createCourse(@Param("course") CourseRequest courseRequest);
-
-
     @Select("""
     UPDATE courses
     SET course_name = #{course.courseName},
@@ -51,5 +45,4 @@ public interface CourseRepository {
     @ResultMap("courseMapper")
     Course updateCourse(@Param("id") Integer courseId,
                         @Param("course") CourseRequest courseRequest);
-
 }
