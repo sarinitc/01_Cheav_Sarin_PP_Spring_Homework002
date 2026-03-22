@@ -13,7 +13,7 @@ public interface StudentRepository {
             @Result(property = "studentName", column = "student_name"),
             @Result(property = "phoneNumber", column = "phone_number"),
             @Result(property = "course", column = "course_id",
-                    one = @One(select = "org.example._1_cheav_sarin_pp_web_homework002.service.Impl.CourseServiceImpl.getCourseById"))
+                    one = @One(select = "org.example._1_cheav_sarin_pp_web_homework002.repository.InstructorRepository.getCourseById"))
 
 
     })
@@ -32,6 +32,8 @@ public interface StudentRepository {
         VALUES (#{student.studentName}, #{student.email}, #{student.phoneNumber})
         RETURNING *;
     """)
+
+    Course createCourse(@Param("course") CourseRequest courseRequest);
     @ResultMap("studentMapper")
     Student saveStudent(@Param("student") StudentRequest studentRequest);
 
