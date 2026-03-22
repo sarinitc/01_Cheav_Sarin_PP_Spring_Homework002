@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student getStudentById(Integer studentId) {
-        return studentRepository.findStudentById(studentId);
+        return studentRepository.getStudentById(studentId);
     }
 
 
@@ -29,8 +29,28 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student createStudent(StudentRequest studentRequest) {
+        Student student = studentRepository.saveStudent(studentRequest);
 
-        return studentRepository.saveStudent(studentRequest);
+        if (studentRequest.getCourseId() != null) {
+            for (Integer courseId : studentRequest.getCourseId()) {
+                studentRepository.insertStudentCourse(student.getStudentId(), courseId);
+            }
+        }
+
+        return studentRepository.getStudentById(student.getStudentId());
+    }
+
+    @Override
+    public boolean deleteStudentById(Integer instructorId) {
+        return false;
+    }
+
+    @Override
+    public boolean deleteInstructorById(Integer studentId) {
+        Student student = studentRepository.getStudentById(studentId);
+        if (student == null){return false;}
+        studentRepository.deleteStudentById(studentId);
+        return true;
     }
 
     @Override

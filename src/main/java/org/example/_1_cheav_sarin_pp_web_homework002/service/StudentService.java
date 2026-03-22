@@ -15,5 +15,10 @@ public interface StudentService {
 
     Student createStudent(StudentRequest studentRequest);
 
+    boolean deleteStudentById(Integer instructorId);
+
+
+    boolean deleteInstructorById(Integer studentId);
+
     Student updateStudent(Integer studentId, StudentRequest studentRequest);
 }

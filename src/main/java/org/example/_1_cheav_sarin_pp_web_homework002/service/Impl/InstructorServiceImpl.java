@@ -39,13 +39,11 @@ public class InstructorServiceImpl implements InstructorService {
         return  instructorRepository.saveINstructor(instructorRequest);
     }
 
-
     @Override
     public Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest) {
         instructorRepository.updateInstructor(instructorId, instructorRequest);
         return instructorRepository.getInstructorById(instructorId);
     }
-
     @Override
     public boolean deleteInstructorById(Integer instructorId) {
         System.out.println("Delete Instructor ID: " + instructorId);
@@ -54,22 +52,10 @@ public class InstructorServiceImpl implements InstructorService {
         instructorRepository.deleteInstructorById(instructorId);
         return true;
     }
-
     @Override
     public Instructor updateInstructor(InstructorService instructorService) {
         return null;
     }
-
-
-
-
-//    @Override
-//    public Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest) {
-//        instructorRepository.updateInstructor(instructorId, instructorRequest);
-//        return instructorRepository.getInstructorById(instructorId);
-//    }
-
-
 }
 
 

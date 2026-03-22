@@ -93,5 +93,22 @@ public class StudentController {
 
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+    @DeleteMapping("/{student-id}")
+    public ResponseEntity<ApiResponse<String>> deleteStudent(
+            @PathVariable("student-id") Integer studentId) {
+
+        Boolean isSuccess = studentService.deleteStudentById(studentId);
+        String statusCode = isSuccess? "200": "404";
+        String msg = isSuccess? "Student deleted successfully":"Student  not found";
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .success(isSuccess)
+                .status(statusCode)
+                .message(msg)
+                .payload("Deleted ID: " + studentId)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 
 }

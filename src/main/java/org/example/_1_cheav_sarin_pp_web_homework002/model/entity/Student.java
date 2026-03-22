@@ -10,12 +10,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
-    private  int studentId;
+    private  Integer studentId;
     private String studentName;
     private String email;
     private String phoneNumber;
-   //private List<Course> courses ;
     private Course course;
+//   private List<Course> courses ;
 
 
 }
