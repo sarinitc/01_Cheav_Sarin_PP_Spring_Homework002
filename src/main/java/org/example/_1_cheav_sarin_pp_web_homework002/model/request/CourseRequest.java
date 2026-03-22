@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class CourseRequest {
     private String courseName;
     private String description;
+    private Integer instructorId;
 }

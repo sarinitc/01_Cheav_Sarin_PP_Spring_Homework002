@@ -25,8 +25,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Instructor createCourse(CourseRequest courseRequest) {
-        return null;
+    public Course createCourse(CourseRequest courseRequest) {
+        return courseRepository.createCourse(courseRequest);
     }
 
 

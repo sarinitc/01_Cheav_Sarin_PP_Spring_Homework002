@@ -14,5 +14,5 @@ public interface CourseService {
 
     Course getCourseById(Integer courseId);
 
-    Instructor createCourse(CourseRequest courseRequest);
+    Course createCourse(CourseRequest courseRequest);
 }
