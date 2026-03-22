@@ -1,7 +1,9 @@
 package org.example._1_cheav_sarin_pp_web_homework002.repository;
 
 import org.apache.ibatis.annotations.*;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import java.util.List;
 @Mapper
@@ -33,6 +35,20 @@ public interface StudentRepository {
     Student saveStudent(@Param("student") StudentRequest studentRequest);
 
 
-    }
+    Student getStudentById(Integer studentId);
+
+    @Select("""
+    UPDATE students
+    SET course_name = #{student.studentName},
+        email = #{student.email},
+        phone_number = #{student.phoneNumber},
+        course_id = #{student.courseId}
+    WHERE student_id = #{id}
+    RETURNING *;
+    """)
+    @ResultMap("studentMapper")
+    Course updateStudent(@Param("id") Integer studentId,
+                        @Param("course") StudentRequest studentRequest);
+}
 
 

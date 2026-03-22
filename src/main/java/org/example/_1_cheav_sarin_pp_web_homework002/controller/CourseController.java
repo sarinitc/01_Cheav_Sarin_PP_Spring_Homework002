@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/course")
+@RequestMapping("/api/v1/courses")
 @RequiredArgsConstructor
 public class CourseController {
 
@@ -92,6 +92,21 @@ public class CourseController {
                 .timestamp(LocalDateTime.now())
                 .build();
 
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<ApiResponse<String>> deleteCourse(
+            @PathVariable Integer courseId) {
+
+        courseService.deleteCourseById(courseId);
+
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .success(true)
+                .status("200")
+                .message("Course deleted successfully")
+                .payload("Deleted ID: " + courseId)
+                .timestamp(LocalDateTime.now())
+                .build();
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     }

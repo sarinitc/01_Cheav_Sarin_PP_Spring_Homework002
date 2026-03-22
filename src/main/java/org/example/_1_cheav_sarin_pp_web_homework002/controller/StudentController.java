@@ -2,7 +2,9 @@ package org.example._1_cheav_sarin_pp_web_homework002.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
@@ -16,7 +18,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/students")
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
@@ -24,7 +26,7 @@ public class StudentController {
    // public List<Student> getAllStudents(){
 
       //  return studentService.getAllStudent();
-     @GetMapping("/students")
+     @GetMapping
     public ResponseEntity<ApiResponse<List<Student>>> getAllStudents(@RequestParam Integer page, @RequestParam Integer size){
          ApiResponse<List<Student>> response = ApiResponse.<List<Student>>builder()
                  .success(true)
@@ -77,7 +79,7 @@ public class StudentController {
     @PutMapping("/{studentId}")
     public ResponseEntity<ApiResponse<Student>> updateStudent(
             @PathVariable Integer studentId,
-            @RequestBody StudentRequest  studentRequest) {
+            @RequestBody StudentRequest studentRequest) {
 
         Student student = studentService.updateStudent(studentId, studentRequest);
 

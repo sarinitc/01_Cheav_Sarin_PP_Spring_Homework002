@@ -1,5 +1,4 @@
 package org.example._1_cheav_sarin_pp_web_homework002.service.Impl;
-
 import lombok.RequiredArgsConstructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
@@ -48,11 +47,30 @@ public class InstructorServiceImpl implements InstructorService {
     }
 
     @Override
-    public void deleteInstructorById(Integer instructorId) {
+    public boolean deleteInstructorById(Integer instructorId) {
+        System.out.println("Delete Instructor ID: " + instructorId);
+        Instructor instructor = instructorRepository.getInstructorById(instructorId);
+        if (instructor == null){return false;}
         instructorRepository.deleteInstructorById(instructorId);
+        return true;
     }
 
+    @Override
+    public Instructor updateInstructor(InstructorService instructorService) {
+        return null;
     }
+
+
+
+
+//    @Override
+//    public Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest) {
+//        instructorRepository.updateInstructor(instructorId, instructorRequest);
+//        return instructorRepository.getInstructorById(instructorId);
+//    }
+
+
+}
 
 
 

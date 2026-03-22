@@ -17,4 +17,6 @@ public interface CourseService {
     Course createCourse(CourseRequest courseRequest);
 
     Course updateCourse(Integer courseId, CourseRequest courseRequest);
+
+    void deleteCourseById(Integer courseId);
 }

@@ -4,7 +4,9 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.apache.catalina.User;
 import org.example._1_cheav_sarin_pp_web_homework002.model.Instructor;
+import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Course;
 import org.example._1_cheav_sarin_pp_web_homework002.model.entity.Student;
+import org.example._1_cheav_sarin_pp_web_homework002.model.request.CourseRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.InstructorRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.request.StudentRequest;
 import org.example._1_cheav_sarin_pp_web_homework002.model.response.ApiResponse;
@@ -78,6 +80,24 @@ public class InstructorController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @DeleteMapping("/{instructor-id}")
+    public ResponseEntity<ApiResponse<String>> deleteInstructor(
+            @PathVariable("instructor-id") Integer instructorId) {
+
+        Boolean isSuccess = instructorService.deleteInstructorById(instructorId);
+        String statusCode = isSuccess? "200": "404";
+        String msg = isSuccess? "Instructor deleted successfully":"Instructor not found";
+        ApiResponse<String> response = ApiResponse.<String>builder()
+                .success(isSuccess)
+                .status(statusCode)
+                .message(msg)
+                .payload("Deleted ID: " + instructorId)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
     @PutMapping("/{instructorId}")
     public ResponseEntity<ApiResponse<Instructor>> updateInstructor(
             @PathVariable Integer instructorId,
@@ -90,22 +110,6 @@ public class InstructorController {
                 .status("200")
                 .message("Instructor updated successfully")
                 .payload(instructor)
-                .timestamp(LocalDateTime.now())
-                .build();
-
-        return ResponseEntity.status(HttpStatus.OK).body(response);
-    }
-    @DeleteMapping("/{instructorId}")
-    public ResponseEntity<ApiResponse<String>> deleteInstructor(
-            @PathVariable Integer instructorId) {
-
-        instructorService.deleteInstructorById(instructorId);
-
-        ApiResponse<String> response = ApiResponse.<String>builder()
-                .success(true)
-                .status("200")
-                .message("Instructor deleted successfully")
-                .payload("Deleted ID: " + instructorId)
                 .timestamp(LocalDateTime.now())
                 .build();
 

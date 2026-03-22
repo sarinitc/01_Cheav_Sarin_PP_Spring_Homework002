@@ -20,5 +20,7 @@ public interface InstructorService {
 
     Instructor updateInstructor(Integer instructorId, InstructorRequest instructorRequest);
 
-    void deleteInstructorById(Integer instructorId);
+    boolean deleteInstructorById(Integer instructorId);
+
+    Instructor updateInstructor(InstructorService instructorService);
 }
