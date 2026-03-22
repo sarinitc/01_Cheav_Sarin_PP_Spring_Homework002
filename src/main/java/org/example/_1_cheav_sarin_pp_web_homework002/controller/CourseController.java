@@ -77,5 +77,22 @@ public class CourseController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+    @PutMapping("/{courseId}")
+    public ResponseEntity<ApiResponse<Course>> updateCourse(
+            @PathVariable Integer courseId,
+            @RequestBody CourseRequest courseRequest) {
+
+        Course course = courseService.updateCourse(courseId, courseRequest);
+
+        ApiResponse<Course> response = ApiResponse.<Course>builder()
+                .success(true)
+                .status("200")
+                .message("Course updated successfully")
+                .payload(course)
+                .timestamp(LocalDateTime.now())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
     }
 

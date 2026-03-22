@@ -38,4 +38,18 @@ public interface CourseRepository {
         RETURNING *;
         """)
     Course createCourse(@Param("course") CourseRequest courseRequest);
+
+
+    @Select("""
+    UPDATE courses
+    SET course_name = #{course.courseName},
+        description = #{course.description},
+        instructor_id = #{course.instructorId}
+    WHERE course_id = #{id}
+    RETURNING *;
+    """)
+    @ResultMap("courseMapper")
+    Course updateCourse(@Param("id") Integer courseId,
+                        @Param("course") CourseRequest courseRequest);
+
 }
